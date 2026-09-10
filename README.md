@@ -7,6 +7,8 @@ X310 Ref input (usually 10 MHz) is fed the 200 MHz from the B210.
 Challenges: all PLL lock safeties must be removed in both the UHD
 library and in the application example.
 
+<img src="IMG_20260910_111906_686.jpg">
+
 Based on commit 323d066e648fc6818221c39c854937f372b42fc2 of 
 https://github.com/EttusResearch/uhd/, apply the patch
 ``uhd.diff`` to force the X310 to external source, configuring the
