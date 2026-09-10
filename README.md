@@ -15,7 +15,7 @@ https://github.com/EttusResearch/uhd/, apply the patch
 LMK04816 Three Input Low-Noise Clock Jitter Cleaner as Pass Through, and
 remove all tests on PLL locking verification.
 
-## Comparison of the phase moise at Ref Out v.s Ref In (B210 output)
+## Comparison of the phase noise at Ref Out v.s Ref In (B210 output)
 
 ``-m`` option of ``phase_noise.py`` to set the phase fluctuation amplitude (set between 0, 0.001, 0.01, 0.1, 0.2, 0.3)
 
