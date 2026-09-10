@@ -10,7 +10,6 @@
 # GNU Radio version: 3.10.12.0
 
 from gnuradio import analog
-from gnuradio import blocks
 from gnuradio import uhd
 import time
 import numpy as np
@@ -40,7 +39,7 @@ class phase_noise(gr.top_block):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 5e6
+        self.samp_rate = samp_rate = 4e6
 
         ##################################################
         # Blocks
@@ -51,7 +50,7 @@ class phase_noise(gr.top_block):
             uhd.stream_args(
                 cpu_format="fc32",
                 args='',
-                channels=list(range(0,1)),
+                channels=list(range(0,2)),
             ),
             "",
         )
@@ -62,9 +61,13 @@ class phase_noise(gr.top_block):
 
         self.uhd_usrp_sink_0.set_center_freq(200e6, 0)
         self.uhd_usrp_sink_0.set_gain(79, 0)
-        self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 0, 0.8, 0, 0)
+
+        self.uhd_usrp_sink_0.set_center_freq(200e6, 1)
+        self.uhd_usrp_sink_0.set_antenna("TX/RX", 1)
+        self.uhd_usrp_sink_0.set_gain(79, 1)
+        self.analog_phase_modulator_fc_0_0 = analog.phase_modulator_fc(1)
         self.analog_phase_modulator_fc_0 = analog.phase_modulator_fc(1)
+        self.analog_noise_source_x_0_0 = analog.noise_source_f(analog.GR_GAUSSIAN, magnitude, 42)
         self.analog_noise_source_x_0 = analog.noise_source_f(analog.GR_GAUSSIAN, magnitude, 0)
 
 
@@ -72,9 +75,9 @@ class phase_noise(gr.top_block):
         # Connections
         ##################################################
         self.connect((self.analog_noise_source_x_0, 0), (self.analog_phase_modulator_fc_0, 0))
-        self.connect((self.analog_phase_modulator_fc_0, 0), (self.blocks_multiply_xx_0, 1))
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 0))
-        self.connect((self.blocks_multiply_xx_0, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.analog_noise_source_x_0_0, 0), (self.analog_phase_modulator_fc_0_0, 0))
+        self.connect((self.analog_phase_modulator_fc_0, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.analog_phase_modulator_fc_0_0, 0), (self.uhd_usrp_sink_0, 1))
 
 
     def get_magnitude(self):
@@ -83,13 +86,13 @@ class phase_noise(gr.top_block):
     def set_magnitude(self, magnitude):
         self.magnitude = magnitude
         self.analog_noise_source_x_0.set_amplitude(self.magnitude)
+        self.analog_noise_source_x_0_0.set_amplitude(self.magnitude)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
 
 

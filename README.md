@@ -7,6 +7,12 @@ X310 Ref input (usually 10 MHz) is fed the 200 MHz from the B210.
 Challenges: all PLL lock safeties must be removed in both the UHD
 library and in the application example.
 
+Based on commit 323d066e648fc6818221c39c854937f372b42fc2 of 
+https://github.com/EttusResearch/uhd/, apply the patch
+``uhd.diff`` to force the X310 to external source, configuring the
+LMK04816 Three Input Low-Noise Clock Jitter Cleaner as Pass Through, and
+remove all tests on PLL locking verification.
+
 ## Comparison of the phase moise at Ref Out v.s Ref In (B210 output)
 
 ``-m`` option of ``phase_noise.py`` to set the phase fluctuation amplitude (set between 0, 0.001, 0.01, 0.1, 0.2, 0.3)
