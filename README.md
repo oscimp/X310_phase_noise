@@ -121,3 +121,18 @@ Done!
 ## Results
 
 <img src="snr.png">
+
+One X310 whose input RefIn clock is a 200 MHz reference with controlled phase
+fluctuation. A single ADC samples the pseudo-random sequence on both channels,
+each fitted with a BasicRX board:
+
+<img src="setup1.png">
+
+In this condition, the common sampling time is cancelled and the SNR remains constant
+irrelevant of the phase noise.
+
+Two X310s are clocked with a different 200 MHz reference clock whose noise source is
+generated with a different seed (i.e. decorrelated). Each X310 samples the same PRN
+but each ADC is clocked with a different noisy 200 MHz.
+
+<img src="setup2.png">
