@@ -144,3 +144,16 @@ generated with a different seed (i.e. decorrelated). Each X310 samples the same 
 but each ADC is clocked with a different noisy 200 MHz.
 
 <img src="setup2.png">
+
+| Noise  | xcorr('normalized') |
+|--------|---------------------|
+|0       |  0.9974      |
+|0       |  0.9975      |
+|0.01    |  0.9974      |
+|0.01    |  0.9974      |
+|0.05    |  0.9973      |
+|0.05    |  0.9972      |
+|0.1     |  0.9965      |
+|0.1     |  0.9965      |
+
+
