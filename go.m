@@ -25,20 +25,23 @@ for l=1:length(d)
     do
       x1=fread(f1,2*N,'int16');x1=x1(1:2:end)+j*x1(2:2:end);
       x2=fread(f2,2*N,'int16');x2=x2(1:2:end)+j*x2(2:2:end);
-      y=xcorr(x1,x2,N/2+1001,'normalized');
-      [s,spos]=max(abs(y));
-      if abs(spos-N/2)>5
-         printf("error\n");
+      if (length(x1)==N)
+        y=xcorr(x1,x2,N/2+1001,'normalized');
+        [s,spos]=max(abs(y));
+        if abs(spos-N/2)>5
+           printf("error\n");
+        end
+        bb=polyfit([-1:1],abs(y(spos-1:spos+1)),2);
+        xx=linspace(-1,1,100);
+        yy=polyval(bb,xx);
+%       if (p==5) figure(99);plot(abs(y));hold on;plot(linspace(spos-1,spos+1,100),yy);end
+        sig(p)=s; % max(yy);
+        noi(p)=var(abs(y(spos+1000:spos+N/2)));
+        a(p)=arg(y(spos));
+        p=p+1;
       end
-      bb=polyfit([-1:1],abs(y(spos-1:spos+1)),2);
-      xx=linspace(-1,1,100);
-      yy=polyval(bb,xx);
-      if (p==5) figure(99);plot(abs(y));hold on;plot(linspace(spos-1,spos+1,100),yy);end
-      sig(p)=s; % max(yy);
-      noi(p)=var(abs(y(spos+1000:spos+N/2)));
-      a(p)=arg(y(spos));
-      p=p+1;
-   until ((length(x1)!=N) || (p>100));
+   until ((length(x1)!=N)) %  || (p>100));
+   p-1
    figure(1);
     subplot(211);plot((sig.^2)./noi);hold on
     mean((sig.^2)./noi);
