@@ -143,14 +143,16 @@ but each ADC is clocked with a different noisy 200 MHz.
 
 <img src="setup2.png">
 
+The cross-correlation coherence **loss** as a function of clock phase noise is observed as:
+
 | Noise  | xcorr('normalized') | Sphi (dBrad^2/Hz) @ 10 kHz |
 |--------|---------------------|------------------|
 |0.00    |  0.99741     |-123 |
 |0.00    |  0.99755     |-123 |
 |0.01    |  0.99739     |-110|
 |0.01    |  0.99737     |-110|
-|0.05    |  0.99727     ||
-|0.05    |  0.99720     ||
+|0.05    |  0.99727     |deduced -96|
+|0.05    |  0.99720     |deduced -96|
 |0.10    |  0.99654     |-91|
 |0.10    |  0.99650     |-91|
 |0.20    |  0.99361     | -85 |
@@ -165,3 +167,5 @@ The <a href="rx_samples_to_file.cpp">acquisition program</a> was updated accordi
 to add external PPS synchronization to the original UHD example.
 
 <img src="SNR_vs_phasenoise.png">
+
+**TODO: why is the baseline offset with respect to 1?**
