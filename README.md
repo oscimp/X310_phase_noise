@@ -135,7 +135,7 @@ each fitted with a BasicRX board:
 <img src="setup1.png">
 
 In this condition, the common sampling time is cancelled and the SNR remains constant
-irrelevant of the phase noise.
+independent of the phase noise.
 
 Two X310s are clocked with a different 200 MHz reference clock whose noise source is
 generated with a different seed (i.e. decorrelated). Each X310 samples the same PRN
