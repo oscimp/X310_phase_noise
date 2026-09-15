@@ -143,15 +143,25 @@ but each ADC is clocked with a different noisy 200 MHz.
 
 <img src="setup2.png">
 
-| Noise  | xcorr('normalized') |
-|--------|---------------------|
-|0.00    |  0.99741     |
-|0.00    |  0.99755     |
-|0.01    |  0.99739     |
-|0.01    |  0.99737     |
-|0.05    |  0.99727     |
-|0.05    |  0.99720     |
-|0.10    |  0.99654     |
-|0.10    |  0.99650     |
+| Noise  | xcorr('normalized') | Sphi (dBrad^2/Hz) @ 10 kHz |
+|--------|---------------------|------------------|
+|0.00    |  0.99741     |-123 |
+|0.00    |  0.99755     |-123 |
+|0.01    |  0.99739     |-110|
+|0.01    |  0.99737     |-110|
+|0.05    |  0.99727     ||
+|0.05    |  0.99720     ||
+|0.10    |  0.99654     |-91|
+|0.10    |  0.99650     |-91|
+|0.20    |  0.99361     | -85 |
+|0.20    |  0.99361     | -85 |
+|0.30    |  0.98837     | -79.5|
+|0.30    |  0.98839     | -79.5|
 
 Average over 124 code sequences, each 40 ms long (=4.96 s long records)
+
+1-PPS synchronization of the 200 MHz sampling clock is mandatory to achieve these results.
+The <a href="rx_samples_to_file.cpp">acquisition program</a> was updated accordingly
+to add external PPS synchronization to the original UHD example.
+
+<img src="SNR_vs_phasenoise.png">
