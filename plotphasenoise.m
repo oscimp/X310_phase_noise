@@ -1,14 +1,20 @@
+subplot(211);
+
 load allx40.mat
 numerator=[numerator(end-1:end) numerator(1:end-2)];
 numerator=(numerator(1:2:end)+numerator(2:2:end))/2;
 Sphi=[-123 -110 -96 -91 -85 -79.5]  % -96 is predicted, NOT measured
-
-subplot(211);
-% Sphi=[-123 -123 -110 -110 -96 -96 -91 -91 -85 -85 -79.5 -79.5]  % -96 is predicted, NOT measured
-% snr= [0.99741 0.99755 0.99739 0.99737 0.99727  0.99720 0.99654 0.99650 0.99361 0.99361 0.98837 0.98839]   <- snr=sqrt(numerator)
 plot(Sphi,numerator,'+-')
 hold on
+
+load allx40_zfl1000.mat
+numerator=[(numerator(end-1)+numerator(end))/2 numerator(1:end-2)];
+Sphi=[-123 -110 -96 -91 -85 -79.5]  % -96 is predicted, NOT measured
+plot(Sphi,numerator,'+-')
+
+% Sphi=[-123 -123 -110 -110 -96 -96 -91 -91 -85 -85 -79.5 -79.5]  % -96 is predicted, NOT measured
+% snr= [0.99741 0.99755 0.99739 0.99737 0.99727  0.99720 0.99654 0.99650 0.99361 0.99361 0.98837 0.98839]   <- snr=sqrt(numerator)
 Sphi=[-123:-79];
 sigma2=10.^(Sphi/10)*4.7e6*70/200;  % 200 MHz noise but sampling a BPSK signal on a 70 MHz carrier
 plot(Sphi,exp(-sigma2));  % remove /2 since two phase noises add
-xlabel('Sphi (dBrad^2/Hz)');ylabel('SNR degradation');legend('measurements','exp(-sigma^2)','location','southwest')
+xlabel('Sphi (dBrad^2/Hz)');ylabel('SNR degradation');legend('measurements (no gain)','measurements (ZFL1000)','exp(-sigma^2)','location','southwest')
