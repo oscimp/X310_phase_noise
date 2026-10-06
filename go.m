@@ -5,7 +5,7 @@ close all
 pkg load signal
 fs=10e6;
 code_dur=40e-3
-N=fs*code_dur;
+N=fs*code_dur*40;
 
 d=dir('2*_noise*');
 for l=1:length(d)
@@ -44,7 +44,8 @@ for l=1:length(d)
    p-1
    figure(1);
     subplot(211);plot((sig.^2)./noi);hold on
-    mean((sig.^2)./noi);
+    numerator(l)=mean(sig.^2)
+    denominator(l)=mean(noi);
 %    subplot(212);plot(a);hold on
     fclose(f1);
     fclose(f2);
