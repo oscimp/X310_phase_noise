@@ -143,7 +143,8 @@ but each ADC is clocked with a different noisy 200 MHz.
 
 <img src="setup2.png">
 
-The cross-correlation coherence **loss** as a function of clock phase noise is observed as:
+The cross-correlation coherence **loss** as a function of clock phase noise is observed as
+(see ``numerator`` in <a href="allx40.mat">allx40.mat</a>):
 
 | Noise  | max(xcorr('normalized'))^2 | Sphi (dBrad^2/Hz) @ 10 kHz |
 |--------|---------------------|------------------|
