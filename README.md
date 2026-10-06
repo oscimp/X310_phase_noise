@@ -145,22 +145,22 @@ but each ADC is clocked with a different noisy 200 MHz.
 
 The cross-correlation coherence **loss** as a function of clock phase noise is observed as:
 
-| Noise  | xcorr('normalized') | Sphi (dBrad^2/Hz) @ 10 kHz |
+| Noise  | max(xcorr('normalized'))^2 | Sphi (dBrad^2/Hz) @ 10 kHz |
 |--------|---------------------|------------------|
-|0.00    |  0.99741     |-123 |
-|0.00    |  0.99755     |-123 |
-|0.01    |  0.99739     |-110|
-|0.01    |  0.99737     |-110|
-|0.05    |  0.99727     |deduced -96|
-|0.05    |  0.99720     |deduced -96|
-|0.10    |  0.99654     |-91|
-|0.10    |  0.99650     |-91|
-|0.20    |  0.99361     | -85 |
-|0.20    |  0.99361     | -85 |
-|0.30    |  0.98837     | -79.5|
-|0.30    |  0.98839     | -79.5|
+|0.00    |  0.99982 |-123 |
+|0.00    |  0.99983 |-123 |
+|0.01    |  0.99980|-110|
+|0.01    |  0.99980|-110|
+|0.05    |  0.99935|deduced -96|
+|0.05    |  0.99936|deduced -96|
+|0.10    |  0.99792|-91|
+|0.10    |  0.99792|-91|
+|0.20    |  0.99201| -85 |
+|0.20    |  0.99199| -85 |
+|0.30    |  0.98173| -79.5|
+|0.30    |  0.98172| -79.5|
 
-Average over 124 code sequences, each 40 ms long (=4.96 s long records)
+Calculated over 40 code sequences, each 40 ms long, and averaged 3 times (=4.96 s long records)
 
 1-PPS synchronization of the 200 MHz sampling clock is mandatory to achieve these results.
 The <a href="rx_samples_to_file.cpp">acquisition program</a> was updated accordingly
